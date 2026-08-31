@@ -1,0 +1,15 @@
+sources:
+  - name: raw
+    database: ADEBNEYDEMODB4
+    schema: RAW
+    tables:
+      - name: brands
+      - name: categories
+      - name: customers
+      - name: customer_support_interactions
+      - name: orders
+      - name: order_items
+      - name: products
+      - name: staffs
+      - name: stocks
+      - name: stores
