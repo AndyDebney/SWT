@@ -22,3 +22,6 @@ sources:
         description: Raw inventory records by store and product.
       - name: stores
         description: Raw store records.
+
+      - name: customer_support_interactions
+        description: Raw customer support interaction records.
