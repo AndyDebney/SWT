@@ -1,0 +1,26 @@
+models:
+  - name: fct_customer_lifetime_value
+    description: Customer-level lifetime demand and support features across all order statuses.
+    columns:
+      - name: customer_id
+        data_tests:
+          - unique
+          - not_null
+      - name: support_risk_flag
+        description: True when the customer has an unresolved interaction or a required support follow-up.
+
+  - name: fct_customer_cross_sell_opportunities
+    description: Ranked category-level cross-sell opportunities for customers, with support-risk context for sales review.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: concat(customer_id, '::', target_category_id)
+    columns:
+      - name: customer_id
+        data_tests:
+          - not_null
+      - name: target_category_id
+        data_tests:
+          - not_null
+      - name: estimated_cross_sell_demand
+        description: Transparent heuristic estimate based on category affinity and historical average category demand; it is not a forecast.
