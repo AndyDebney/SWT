@@ -1,0 +1,100 @@
+models:
+  - name: stg_brands
+    data_tests:
+      - unique:
+          arguments:
+            column_name: >-
+              concat("source_file", '::', to_varchar("record_line_no"))
+      - not_null_columns_lowercase:
+          arguments:
+            column_names: [source_file, record_line_no]
+
+  - name: stg_categories
+    data_tests:
+      - unique:
+          arguments:
+            column_name: >-
+              concat("source_file", '::', to_varchar("record_line_no"))
+      - not_null_columns_lowercase:
+          arguments:
+            column_names: [source_file, record_line_no]
+
+  - name: stg_customers
+    data_tests:
+      - unique:
+          arguments:
+            column_name: >-
+              concat("source_file", '::', to_varchar("record_line_no"))
+      - not_null_columns_lowercase:
+          arguments:
+            column_names: [source_file, record_line_no]
+
+  - name: stg_customer_support_interactions
+    data_tests:
+      - unique:
+          arguments:
+            column_name: >-
+              concat("source_file", '::', to_varchar("record_line_no"))
+      - not_null_columns_lowercase:
+          arguments:
+            column_names: [source_file, record_line_no]
+
+  - name: stg_orders
+    data_tests:
+      - unique:
+          arguments:
+            column_name: >-
+              concat("source_file", '::', to_varchar("record_line_no"))
+      - not_null_columns_lowercase:
+          arguments:
+            column_names: [source_file, record_line_no]
+
+  - name: stg_order_items
+    data_tests:
+      - unique:
+          arguments:
+            column_name: >-
+              concat("source_file", '::', to_varchar("record_line_no"))
+      - not_null_columns_lowercase:
+          arguments:
+            column_names: [source_file, record_line_no]
+
+  - name: stg_products
+    data_tests:
+      - unique:
+          arguments:
+            column_name: >-
+              concat("source_file", '::', to_varchar("record_line_no"))
+      - not_null_columns_lowercase:
+          arguments:
+            column_names: [source_file, record_line_no]
+
+  - name: stg_staffs
+    data_tests:
+      - unique:
+          arguments:
+            column_name: >-
+              concat("source_file", '::', to_varchar("record_line_no"))
+      - not_null_columns_lowercase:
+          arguments:
+            column_names: [source_file, record_line_no]
+
+  - name: stg_stocks
+    data_tests:
+      - unique:
+          arguments:
+            column_name: >-
+              concat("source_file", '::', to_varchar("record_line_no"))
+      - not_null_columns_lowercase:
+          arguments:
+            column_names: [source_file, record_line_no]
+
+  - name: stg_stores
+    data_tests:
+      - unique:
+          arguments:
+            column_name: >-
+              concat("source_file", '::', to_varchar("record_line_no"))
+      - not_null_columns_lowercase:
+          arguments:
+            column_names: [source_file, record_line_no]
