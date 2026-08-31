@@ -194,3 +194,38 @@ models:
       - name: CITY
       - name: STATE
       - name: ZIP_CODE
+
+
+  - name: stg_customer_support_interactions
+    description: Staging view of the raw customer support interactions source; preserves the raw schema.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: concat(_FILE, '::', to_varchar(_LINE))
+    columns:
+      - name: _FILE
+        data_tests:
+          - not_null
+      - name: _LINE
+        data_tests:
+          - not_null
+      - name: _MODIFIED
+      - name: _FIVETRAN_SYNCED
+      - name: INTERACTION_ID
+      - name: CUSTOMER_ID
+      - name: ORDER_ID
+      - name: PRODUCT_ID
+      - name: INTERACTION_AT
+      - name: CHANNEL
+      - name: INTERACTION_TYPE
+      - name: ISSUE_CATEGORY
+      - name: SENTIMENT_SCORE
+      - name: SENTIMENT_LABEL
+      - name: CSAT_SCORE
+      - name: RESOLVED_FLAG
+      - name: RESOLUTION_MINUTES
+      - name: FOLLOW_UP_REQUIRED
+      - name: INTERACTION_COST
+      - name: REFUND_AMOUNT
+      - name: SUPPORT_AGENT_ID
+      - name: INTERACTION_SUMMARY
