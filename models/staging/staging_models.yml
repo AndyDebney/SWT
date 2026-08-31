@@ -1,0 +1,196 @@
+models:
+  - name: stg_brands
+    description: Staging view of the raw brands source; preserves the raw schema.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: concat(_FILE, '::', to_varchar(_LINE))
+    columns:
+      - name: _FILE
+        data_tests:
+          - not_null
+      - name: _LINE
+        data_tests:
+          - not_null
+      - name: _MODIFIED
+      - name: _FIVETRAN_SYNCED
+      - name: BRAND_ID
+      - name: BRAND_NAME
+
+  - name: stg_categories
+    description: Staging view of the raw categories source; preserves the raw schema.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: concat(_FILE, '::', to_varchar(_LINE))
+    columns:
+      - name: _FILE
+        data_tests:
+          - not_null
+      - name: _LINE
+        data_tests:
+          - not_null
+      - name: _MODIFIED
+      - name: _FIVETRAN_SYNCED
+      - name: CATEGORY_ID
+      - name: CATEGORY_NAME
+
+  - name: stg_customers
+    description: Staging view of the raw customers source; preserves the raw schema.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: concat(_FILE, '::', to_varchar(_LINE))
+    columns:
+      - name: _FILE
+        data_tests:
+          - not_null
+      - name: _LINE
+        data_tests:
+          - not_null
+      - name: _MODIFIED
+      - name: _FIVETRAN_SYNCED
+      - name: CUSTOMER_ID
+      - name: FIRST_NAME
+      - name: LAST_NAME
+      - name: PHONE
+      - name: EMAIL
+      - name: STREET
+      - name: CITY
+      - name: STATE
+      - name: ZIP_CODE
+
+  - name: stg_orders
+    description: Staging view of the raw orders source; preserves the raw schema.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: concat(_FILE, '::', to_varchar(_LINE))
+    columns:
+      - name: _FILE
+        data_tests:
+          - not_null
+      - name: _LINE
+        data_tests:
+          - not_null
+      - name: _MODIFIED
+      - name: _FIVETRAN_SYNCED
+      - name: ORDER_ID
+      - name: CUSTOMER_ID
+      - name: ORDER_STATUS
+      - name: ORDER_DATE
+      - name: REQUIRED_DATE
+      - name: SHIPPED_DATE
+      - name: STORE_ID
+      - name: STAFF_ID
+
+  - name: stg_order_items
+    description: Staging view of the raw order-items source; preserves the raw schema.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: concat(_FILE, '::', to_varchar(_LINE))
+    columns:
+      - name: _FILE
+        data_tests:
+          - not_null
+      - name: _LINE
+        data_tests:
+          - not_null
+      - name: _MODIFIED
+      - name: _FIVETRAN_SYNCED
+      - name: ORDER_ID
+      - name: ITEM_ID
+      - name: PRODUCT_ID
+      - name: QUANTITY
+      - name: LIST_PRICE
+      - name: DISCOUNT
+
+  - name: stg_products
+    description: Staging view of the raw products source; preserves the raw schema.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: concat(_FILE, '::', to_varchar(_LINE))
+    columns:
+      - name: _FILE
+        data_tests:
+          - not_null
+      - name: _LINE
+        data_tests:
+          - not_null
+      - name: _MODIFIED
+      - name: _FIVETRAN_SYNCED
+      - name: PRODUCT_ID
+      - name: PRODUCT_NAME
+      - name: BRAND_ID
+      - name: CATEGORY_ID
+      - name: MODEL_YEAR
+      - name: LIST_PRICE
+
+  - name: stg_staffs
+    description: Staging view of the raw staffs source; preserves the raw schema.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: concat(_FILE, '::', to_varchar(_LINE))
+    columns:
+      - name: _FILE
+        data_tests:
+          - not_null
+      - name: _LINE
+        data_tests:
+          - not_null
+      - name: _MODIFIED
+      - name: _FIVETRAN_SYNCED
+      - name: STAFF_ID
+      - name: FIRST_NAME
+      - name: LAST_NAME
+      - name: EMAIL
+      - name: PHONE
+      - name: ACTIVE
+      - name: STORE_ID
+      - name: MANAGER_ID
+
+  - name: stg_stocks
+    description: Staging view of the raw stocks source; preserves the raw schema.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: concat(_FILE, '::', to_varchar(_LINE))
+    columns:
+      - name: _FILE
+        data_tests:
+          - not_null
+      - name: _LINE
+        data_tests:
+          - not_null
+      - name: _MODIFIED
+      - name: _FIVETRAN_SYNCED
+      - name: STORE_ID
+      - name: PRODUCT_ID
+      - name: QUANTITY
+
+  - name: stg_stores
+    description: Staging view of the raw stores source; preserves the raw schema.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: concat(_FILE, '::', to_varchar(_LINE))
+    columns:
+      - name: _FILE
+        data_tests:
+          - not_null
+      - name: _LINE
+        data_tests:
+          - not_null
+      - name: _MODIFIED
+      - name: _FIVETRAN_SYNCED
+      - name: STORE_ID
+      - name: STORE_NAME
+      - name: PHONE
+      - name: EMAIL
+      - name: STREET
+      - name: CITY
+      - name: STATE
+      - name: ZIP_CODE
