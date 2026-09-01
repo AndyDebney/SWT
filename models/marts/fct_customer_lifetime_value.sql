@@ -1,3 +1,62 @@
+with customer_order_items as (
+    select
+        orders.order_id,
+        orders.customer_id,
+        orders.order_status,
+        orders.order_date,
+        order_items.item_id,
+        order_items.product_id,
+        products.category_id,
+        order_items.quantity,
+        order_items.quantity * order_items.list_price * (1 - order_items.discount) as net_item_demand
+    from {{ source('raw', 'orders') }} as orders
+    inner join {{ source('raw', 'order_items') }} as order_items
+        on orders.order_id = order_items.order_id
+    inner join {{ source('raw', 'products') }} as products
+        on order_items.product_id = products.product_id
+),
+customer_sales as (
+    select
+        customer_id,
+        count(distinct order_id) as lifetime_order_count,
+        count(distinct product_id) as lifetime_distinct_product_count,
+        count(distinct category_id) as lifetime_distinct_category_count,
+        sum(quantity) as lifetime_units_purchased,
+        sum(net_item_demand) as lifetime_net_demand,
+        sum(net_item_demand) / nullif(count(distinct order_id), 0) as avg_order_net_demand,
+        min(order_date) as first_order_at,
+        max(order_date) as last_order_at,
+        count(distinct case when order_status = 1 then order_id end) as status_1_order_count,
+        count(distinct case when order_status = 2 then order_id end) as status_2_order_count,
+        count(distinct case when order_status = 3 then order_id end) as status_3_order_count,
+        count(distinct case when order_status = 4 then order_id end) as status_4_order_count
+    from customer_order_items
+    group by customer_id
+),
+customer_support as (
+    select
+        customer_id,
+        count(*) as support_interaction_count,
+        min(interaction_at) as first_support_interaction_at,
+        max(interaction_at) as last_support_interaction_at,
+        sum(interaction_cost) as total_support_cost,
+        avg(interaction_cost) as avg_support_cost_per_interaction,
+        sum(refund_amount) as total_refund_amount,
+        avg(csat_score) as avg_csat_score,
+        avg(sentiment_score) as avg_sentiment_score,
+        count_if(sentiment_label = 'negative') as negative_sentiment_interaction_count,
+        count_if(sentiment_label = 'negative') / nullif(count(*), 0) as negative_sentiment_rate,
+        count_if(resolved_flag) as resolved_interaction_count,
+        count_if(resolved_flag) / nullif(count(*), 0) as resolution_rate,
+        avg(case when resolved_flag then resolution_minutes end) as avg_resolution_minutes_resolved,
+        count_if(not resolved_flag) as unresolved_interaction_count,
+        count_if(not resolved_flag) / nullif(count(*), 0) as unresolved_interaction_rate,
+        count_if(follow_up_required) as follow_up_required_count,
+        count_if(follow_up_required) / nullif(count(*), 0) as follow_up_required_rate
+    from {{ source('raw', 'customer_support_interactions') }}
+    group by customer_id
+)
+
 select
     customers.customer_id,
     customers.first_name,
@@ -33,15 +92,14 @@ select
     support.unresolved_interaction_rate,
     coalesce(support.follow_up_required_count, 0) as follow_up_required_count,
     support.follow_up_required_rate,
-
     case
         when coalesce(support.unresolved_interaction_count, 0) > 0
             or coalesce(support.follow_up_required_count, 0) > 0
             then true
         else false
     end as support_risk_flag
-from {{ ref('int_customers') }} as customers
-left join {{ ref('int_customer_sales_by_customer') }} as sales
+from {{ source('raw', 'customers') }} as customers
+left join customer_sales as sales
     on customers.customer_id = sales.customer_id
-left join {{ ref('int_customer_support_by_customer') }} as support
+left join customer_support as support
     on customers.customer_id = support.customer_id
