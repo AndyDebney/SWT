@@ -1,0 +1,340 @@
+models:
+  - name: int_brands
+    description: Pass-through intermediate model built from `stg_brands`, renaming source metadata columns for consistency.
+    columns:
+      - name: source_file
+        description: Renamed from `_file`; source file name for the record.
+      - name: record_line_no
+        description: Renamed from `_line`; source file line number for the record.
+      - name: updated_at
+        description: Renamed from `_modified`; source-system update timestamp for the record.
+      - name: loaded_at
+        description: Renamed from `_fivetran_synced`; warehouse load timestamp for the record.
+      - name: brand_id
+        description: Business column carried through from `stg_brands`.
+      - name: brand_name
+        description: Business column carried through from `stg_brands`.
+
+  - name: int_categories
+    description: Pass-through intermediate model built from `stg_categories`, renaming source metadata columns for consistency.
+    columns:
+      - name: source_file
+        description: Renamed from `_file`; source file name for the record.
+      - name: record_line_no
+        description: Renamed from `_line`; source file line number for the record.
+      - name: updated_at
+        description: Renamed from `_modified`; source-system update timestamp for the record.
+      - name: loaded_at
+        description: Renamed from `_fivetran_synced`; warehouse load timestamp for the record.
+      - name: category_id
+        description: Business column carried through from `stg_categories`.
+      - name: category_name
+        description: Business column carried through from `stg_categories`.
+
+  - name: int_customers
+    description: Pass-through intermediate model built from `stg_customers`, renaming source metadata columns for consistency.
+    columns:
+      - name: source_file
+        description: Renamed from `_file`; source file name for the record.
+      - name: record_line_no
+        description: Renamed from `_line`; source file line number for the record.
+      - name: updated_at
+        description: Renamed from `_modified`; source-system update timestamp for the record.
+      - name: loaded_at
+        description: Renamed from `_fivetran_synced`; warehouse load timestamp for the record.
+      - name: customer_id
+        description: Business column carried through from `stg_customers`.
+      - name: first_name
+        description: Business column carried through from `stg_customers`.
+      - name: last_name
+        description: Business column carried through from `stg_customers`.
+      - name: phone
+        description: Business column carried through from `stg_customers`.
+      - name: email
+        description: Business column carried through from `stg_customers`.
+      - name: street
+        description: Business column carried through from `stg_customers`.
+      - name: city
+        description: Business column carried through from `stg_customers`.
+      - name: state
+        description: Business column carried through from `stg_customers`.
+      - name: zip_code
+        description: Business column carried through from `stg_customers`.
+
+  - name: int_orders
+    description: Pass-through intermediate model built from `stg_orders`, renaming source metadata columns for consistency.
+    columns:
+      - name: source_file
+        description: Renamed from `_file`; source file name for the record.
+      - name: record_line_no
+        description: Renamed from `_line`; source file line number for the record.
+      - name: updated_at
+        description: Renamed from `_modified`; source-system update timestamp for the record.
+      - name: loaded_at
+        description: Renamed from `_fivetran_synced`; warehouse load timestamp for the record.
+      - name: order_id
+        description: Business column carried through from `stg_orders`.
+      - name: customer_id
+        description: Business column carried through from `stg_orders`.
+      - name: order_status
+        description: Business column carried through from `stg_orders`.
+      - name: order_date
+        description: Business column carried through from `stg_orders`.
+      - name: required_date
+        description: Business column carried through from `stg_orders`.
+      - name: shipped_date
+        description: Business column carried through from `stg_orders`.
+      - name: store_id
+        description: Business column carried through from `stg_orders`.
+      - name: staff_id
+        description: Business column carried through from `stg_orders`.
+
+  - name: int_order_items
+    description: Pass-through intermediate model built from `stg_order_items`, renaming source metadata columns for consistency.
+    columns:
+      - name: source_file
+        description: Renamed from `_file`; source file name for the record.
+      - name: record_line_no
+        description: Renamed from `_line`; source file line number for the record.
+      - name: updated_at
+        description: Renamed from `_modified`; source-system update timestamp for the record.
+      - name: loaded_at
+        description: Renamed from `_fivetran_synced`; warehouse load timestamp for the record.
+      - name: order_id
+        description: Business column carried through from `stg_order_items`.
+      - name: item_id
+        description: Business column carried through from `stg_order_items`.
+      - name: product_id
+        description: Business column carried through from `stg_order_items`.
+      - name: quantity
+        description: Business column carried through from `stg_order_items`.
+      - name: list_price
+        description: Business column carried through from `stg_order_items`.
+      - name: discount
+        description: Business column carried through from `stg_order_items`.
+
+  - name: int_products
+    description: Pass-through intermediate model built from `stg_products`, renaming source metadata columns for consistency.
+    columns:
+      - name: source_file
+        description: Renamed from `_file`; source file name for the record.
+      - name: record_line_no
+        description: Renamed from `_line`; source file line number for the record.
+      - name: updated_at
+        description: Renamed from `_modified`; source-system update timestamp for the record.
+      - name: loaded_at
+        description: Renamed from `_fivetran_synced`; warehouse load timestamp for the record.
+      - name: product_id
+        description: Business column carried through from `stg_products`.
+      - name: product_name
+        description: Business column carried through from `stg_products`.
+      - name: brand_id
+        description: Business column carried through from `stg_products`.
+      - name: category_id
+        description: Business column carried through from `stg_products`.
+      - name: model_year
+        description: Business column carried through from `stg_products`.
+      - name: list_price
+        description: Business column carried through from `stg_products`.
+
+  - name: int_staffs
+    description: Pass-through intermediate model built from `stg_staffs`, renaming source metadata columns for consistency.
+    columns:
+      - name: source_file
+        description: Renamed from `_file`; source file name for the record.
+      - name: record_line_no
+        description: Renamed from `_line`; source file line number for the record.
+      - name: updated_at
+        description: Renamed from `_modified`; source-system update timestamp for the record.
+      - name: loaded_at
+        description: Renamed from `_fivetran_synced`; warehouse load timestamp for the record.
+      - name: staff_id
+        description: Business column carried through from `stg_staffs`.
+      - name: first_name
+        description: Business column carried through from `stg_staffs`.
+      - name: last_name
+        description: Business column carried through from `stg_staffs`.
+      - name: email
+        description: Business column carried through from `stg_staffs`.
+      - name: phone
+        description: Business column carried through from `stg_staffs`.
+      - name: active
+        description: Business column carried through from `stg_staffs`.
+      - name: store_id
+        description: Business column carried through from `stg_staffs`.
+      - name: manager_id
+        description: Business column carried through from `stg_staffs`.
+
+  - name: int_stocks
+    description: Pass-through intermediate model built from `stg_stocks`, renaming source metadata columns for consistency.
+    columns:
+      - name: source_file
+        description: Renamed from `_file`; source file name for the record.
+      - name: record_line_no
+        description: Renamed from `_line`; source file line number for the record.
+      - name: updated_at
+        description: Renamed from `_modified`; source-system update timestamp for the record.
+      - name: loaded_at
+        description: Renamed from `_fivetran_synced`; warehouse load timestamp for the record.
+      - name: store_id
+        description: Business column carried through from `stg_stocks`.
+      - name: product_id
+        description: Business column carried through from `stg_stocks`.
+      - name: quantity
+        description: Business column carried through from `stg_stocks`.
+
+  - name: int_stores
+    description: Pass-through intermediate model built from `stg_stores`, renaming source metadata columns for consistency.
+    columns:
+      - name: source_file
+        description: Renamed from `_file`; source file name for the record.
+      - name: record_line_no
+        description: Renamed from `_line`; source file line number for the record.
+      - name: updated_at
+        description: Renamed from `_modified`; source-system update timestamp for the record.
+      - name: loaded_at
+        description: Renamed from `_fivetran_synced`; warehouse load timestamp for the record.
+      - name: store_id
+        description: Business column carried through from `stg_stores`.
+      - name: store_name
+        description: Business column carried through from `stg_stores`.
+      - name: phone
+        description: Business column carried through from `stg_stores`.
+      - name: email
+        description: Business column carried through from `stg_stores`.
+      - name: street
+        description: Business column carried through from `stg_stores`.
+      - name: city
+        description: Business column carried through from `stg_stores`.
+      - name: state
+        description: Business column carried through from `stg_stores`.
+      - name: zip_code
+        description: Business column carried through from `stg_stores`.
+
+
+  - name: int_customer_support_interactions
+    description: Pass-through intermediate model built from `stg_customer_support_interactions`, renaming source metadata columns for consistency.
+    columns:
+      - name: source_file
+        description: Renamed from `_file`; source file name for the record.
+      - name: record_line_no
+        description: Renamed from `_line`; source file line number for the record.
+      - name: updated_at
+        description: Renamed from `_modified`; source-system update timestamp for the record.
+      - name: loaded_at
+        description: Renamed from `_fivetran_synced`; warehouse load timestamp for the record.
+      - name: interaction_id
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: customer_id
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: order_id
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: product_id
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: interaction_at
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: channel
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: interaction_type
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: issue_category
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: sentiment_score
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: sentiment_label
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: csat_score
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: resolved_flag
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: resolution_minutes
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: follow_up_required
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: interaction_cost
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: refund_amount
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: support_agent_id
+        description: Business column carried through from `stg_customer_support_interactions`.
+      - name: interaction_summary
+        description: Business column carried through from `stg_customer_support_interactions`.
+
+
+  - name: int_customer_order_value
+    description: Order-level customer value model used for CLV analysis. Includes only orders where `order_status = 1`.
+    columns:
+      - name: order_id
+        description: Qualifying order identifier.
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: Customer who placed the qualifying order.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('int_customers')
+                field: customer_id
+      - name: order_status
+        description: Order status carried from `int_orders`; filtered to status `1` in this model.
+      - name: order_date
+        description: Order date for the qualifying order.
+      - name: required_date
+        description: Required date for the qualifying order.
+      - name: shipped_date
+        description: Shipped date for the qualifying order.
+      - name: store_id
+        description: Store associated with the qualifying order.
+      - name: staff_id
+        description: Staff member associated with the qualifying order.
+      - name: order_line_count
+        description: Number of line items on the qualifying order.
+      - name: distinct_products_ordered
+        description: Number of distinct products on the qualifying order.
+      - name: total_units_ordered
+        description: Total units on the qualifying order.
+      - name: gross_order_value
+        description: Gross order value calculated as `sum(quantity * list_price * (1 - discount))`.
+        data_tests:
+          - not_null
+
+  - name: int_customer_support_summary
+    description: Customer-level support summary used alongside CLV analysis.
+    columns:
+      - name: customer_id
+        description: Customer identifier for the support summary row.
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('int_customers')
+                field: customer_id
+      - name: first_support_interaction_at
+        description: Timestamp of the customer's first recorded support interaction.
+      - name: last_support_interaction_at
+        description: Timestamp of the customer's most recent recorded support interaction.
+      - name: support_interaction_count
+        description: Count of support interactions for the customer.
+      - name: supported_order_count
+        description: Count of distinct orders referenced in support interactions.
+      - name: supported_product_count
+        description: Count of distinct products referenced in support interactions.
+      - name: avg_csat_score
+        description: Average CSAT score across the customer's support interactions.
+      - name: avg_sentiment_score
+        description: Average sentiment score across the customer's support interactions.
+      - name: avg_resolution_minutes
+        description: Average resolution time in minutes across the customer's support interactions.
+      - name: resolved_interaction_count
+        description: Count of resolved support interactions.
+      - name: unresolved_interaction_count
+        description: Count of unresolved support interactions.
+      - name: follow_up_required_count
+        description: Count of support interactions marked as requiring follow-up.
+      - name: total_support_cost
+        description: Total support cost associated with the customer.
+      - name: total_refund_amount
+        description: Total refund amount associated with the customer.
