@@ -1,0 +1,75 @@
+models:
+  - name: fct_customer_lifetime_value
+    description: Customer-grain lifetime value mart using gross order value only. Includes only orders where `order_status = 1`.
+    columns:
+      - name: customer_id
+        description: Customer identifier; one row per customer.
+        data_tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: Customer first name.
+      - name: last_name
+        description: Customer last name.
+      - name: phone
+        description: Customer phone number.
+      - name: email
+        description: Customer email address.
+      - name: street
+        description: Customer street address.
+      - name: city
+        description: Customer city.
+      - name: state
+        description: Customer state.
+      - name: zip_code
+        description: Customer ZIP code.
+      - name: first_order_date
+        description: First qualifying order date for the customer.
+      - name: last_order_date
+        description: Most recent qualifying order date for the customer.
+      - name: lifetime_order_count
+        description: Count of qualifying orders for the customer.
+      - name: lifetime_gross_revenue
+        description: Lifetime gross revenue from qualifying orders.
+        data_tests:
+          - not_null
+      - name: avg_order_value
+        description: Average gross value per qualifying order.
+      - name: lifetime_units_ordered
+        description: Total units ordered across qualifying orders.
+      - name: lifetime_order_line_count
+        description: Total order lines across qualifying orders.
+      - name: lifetime_distinct_products_ordered
+        description: Count of distinct products purchased across all qualifying orders for the customer.
+      - name: is_repeat_customer
+        description: True when the customer has more than one qualifying order.
+      - name: customer_lifespan_days
+        description: Days between the customer's first and last qualifying order.
+      - name: days_since_last_order
+        description: Days since the customer's most recent qualifying order.
+      - name: first_support_interaction_at
+        description: Timestamp of the customer's first recorded support interaction.
+      - name: last_support_interaction_at
+        description: Timestamp of the customer's most recent recorded support interaction.
+      - name: support_interaction_count
+        description: Count of support interactions for the customer.
+      - name: supported_order_count
+        description: Count of distinct orders referenced in support interactions.
+      - name: supported_product_count
+        description: Count of distinct products referenced in support interactions.
+      - name: avg_csat_score
+        description: Average CSAT score across the customer's support interactions.
+      - name: avg_sentiment_score
+        description: Average sentiment score across the customer's support interactions.
+      - name: avg_resolution_minutes
+        description: Average support resolution time in minutes.
+      - name: resolved_interaction_count
+        description: Count of resolved support interactions.
+      - name: unresolved_interaction_count
+        description: Count of unresolved support interactions.
+      - name: follow_up_required_count
+        description: Count of support interactions requiring follow-up.
+      - name: total_support_cost
+        description: Total support cost associated with the customer.
+      - name: total_refund_amount
+        description: Total refund amount associated with the customer.

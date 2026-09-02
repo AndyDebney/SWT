@@ -1,0 +1,348 @@
+models:
+  - name: stg_brands
+    description: Staging model for raw brand records from `ADEBNEYDEMODB4.RAW.BRANDS`. Preserves source column names.
+    columns:
+      - name: _file
+        description: Source column `_FILE` (TEXT).
+      - name: _line
+        description: Source column `_LINE` (NUMBER).
+      - name: _modified
+        description: Source column `_MODIFIED` (TIMESTAMP_TZ).
+      - name: _fivetran_synced
+        description: Source column `_FIVETRAN_SYNCED` (TIMESTAMP_TZ).
+      - name: brand_id
+        description: Source column `BRAND_ID` (NUMBER).
+        data_tests:
+          - unique
+          - not_null
+      - name: brand_name
+        description: Source column `BRAND_NAME` (TEXT).
+
+  - name: stg_categories
+    description: Staging model for raw product category records from `ADEBNEYDEMODB4.RAW.CATEGORIES`. Preserves source column names.
+    columns:
+      - name: _file
+        description: Source column `_FILE` (TEXT).
+      - name: _line
+        description: Source column `_LINE` (NUMBER).
+      - name: _modified
+        description: Source column `_MODIFIED` (TIMESTAMP_TZ).
+      - name: _fivetran_synced
+        description: Source column `_FIVETRAN_SYNCED` (TIMESTAMP_TZ).
+      - name: category_id
+        description: Source column `CATEGORY_ID` (NUMBER).
+        data_tests:
+          - unique
+          - not_null
+      - name: category_name
+        description: Source column `CATEGORY_NAME` (TEXT).
+
+  - name: stg_customers
+    description: Staging model for raw customer records from `ADEBNEYDEMODB4.RAW.CUSTOMERS`. Preserves source column names.
+    columns:
+      - name: _file
+        description: Source column `_FILE` (TEXT).
+      - name: _line
+        description: Source column `_LINE` (NUMBER).
+      - name: _modified
+        description: Source column `_MODIFIED` (TIMESTAMP_TZ).
+      - name: _fivetran_synced
+        description: Source column `_FIVETRAN_SYNCED` (TIMESTAMP_TZ).
+      - name: customer_id
+        description: Source column `CUSTOMER_ID` (NUMBER).
+        data_tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: Source column `FIRST_NAME` (TEXT).
+      - name: last_name
+        description: Source column `LAST_NAME` (TEXT).
+      - name: phone
+        description: Source column `PHONE` (TEXT).
+      - name: email
+        description: Source column `EMAIL` (TEXT).
+      - name: street
+        description: Source column `STREET` (TEXT).
+      - name: city
+        description: Source column `CITY` (TEXT).
+      - name: state
+        description: Source column `STATE` (TEXT).
+      - name: zip_code
+        description: Source column `ZIP_CODE` (NUMBER).
+
+  - name: stg_orders
+    description: Staging model for raw order header records from `ADEBNEYDEMODB4.RAW.ORDERS`. Preserves source column names.
+    columns:
+      - name: _file
+        description: Source column `_FILE` (TEXT).
+      - name: _line
+        description: Source column `_LINE` (NUMBER).
+      - name: _modified
+        description: Source column `_MODIFIED` (TIMESTAMP_TZ).
+      - name: _fivetran_synced
+        description: Source column `_FIVETRAN_SYNCED` (TIMESTAMP_TZ).
+      - name: order_id
+        description: Source column `ORDER_ID` (NUMBER).
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: Source column `CUSTOMER_ID` (NUMBER).
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_customers')
+                field: customer_id
+      - name: order_status
+        description: Source column `ORDER_STATUS` (NUMBER).
+      - name: order_date
+        description: Source column `ORDER_DATE` (DATE).
+      - name: required_date
+        description: Source column `REQUIRED_DATE` (DATE).
+      - name: shipped_date
+        description: Parsed date from source column `SHIPPED_DATE` (TEXT).
+      - name: store_id
+        description: Source column `STORE_ID` (NUMBER).
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_stores')
+                field: store_id
+      - name: staff_id
+        description: Source column `STAFF_ID` (NUMBER).
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_staffs')
+                field: staff_id
+
+  - name: stg_order_items
+    description: Staging model for raw line-item records for orders from `ADEBNEYDEMODB4.RAW.ORDER_ITEMS`. Preserves source column names.
+    columns:
+      - name: _file
+        description: Source column `_FILE` (TEXT).
+      - name: _line
+        description: Source column `_LINE` (NUMBER).
+      - name: _modified
+        description: Source column `_MODIFIED` (TIMESTAMP_TZ).
+      - name: _fivetran_synced
+        description: Source column `_FIVETRAN_SYNCED` (TIMESTAMP_TZ).
+      - name: order_id
+        description: Source column `ORDER_ID` (NUMBER).
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_orders')
+                field: order_id
+      - name: item_id
+        description: Source column `ITEM_ID` (NUMBER).
+        data_tests:
+          - not_null
+      - name: product_id
+        description: Source column `PRODUCT_ID` (NUMBER).
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_products')
+                field: product_id
+      - name: quantity
+        description: Source column `QUANTITY` (NUMBER).
+        data_tests:
+          - not_null
+      - name: list_price
+        description: Source column `LIST_PRICE` (FLOAT).
+      - name: discount
+        description: Source column `DISCOUNT` (FLOAT).
+
+  - name: stg_products
+    description: Staging model for raw product records from `ADEBNEYDEMODB4.RAW.PRODUCTS`. Preserves source column names.
+    columns:
+      - name: _file
+        description: Source column `_FILE` (TEXT).
+      - name: _line
+        description: Source column `_LINE` (NUMBER).
+      - name: _modified
+        description: Source column `_MODIFIED` (TIMESTAMP_TZ).
+      - name: _fivetran_synced
+        description: Source column `_FIVETRAN_SYNCED` (TIMESTAMP_TZ).
+      - name: product_id
+        description: Source column `PRODUCT_ID` (NUMBER).
+        data_tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: Source column `PRODUCT_NAME` (TEXT).
+      - name: brand_id
+        description: Source column `BRAND_ID` (NUMBER).
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_brands')
+                field: brand_id
+      - name: category_id
+        description: Source column `CATEGORY_ID` (NUMBER).
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_categories')
+                field: category_id
+      - name: model_year
+        description: Source column `MODEL_YEAR` (NUMBER).
+      - name: list_price
+        description: Source column `LIST_PRICE` (FLOAT).
+
+  - name: stg_staffs
+    description: Staging model for raw staff records from `ADEBNEYDEMODB4.RAW.STAFFS`. Preserves source column names.
+    columns:
+      - name: _file
+        description: Source column `_FILE` (TEXT).
+      - name: _line
+        description: Source column `_LINE` (NUMBER).
+      - name: _modified
+        description: Source column `_MODIFIED` (TIMESTAMP_TZ).
+      - name: _fivetran_synced
+        description: Source column `_FIVETRAN_SYNCED` (TIMESTAMP_TZ).
+      - name: staff_id
+        description: Source column `STAFF_ID` (NUMBER).
+        data_tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: Source column `FIRST_NAME` (TEXT).
+      - name: last_name
+        description: Source column `LAST_NAME` (TEXT).
+      - name: email
+        description: Source column `EMAIL` (TEXT).
+      - name: phone
+        description: Source column `PHONE` (TEXT).
+      - name: active
+        description: Source column `ACTIVE` (NUMBER).
+      - name: store_id
+        description: Source column `STORE_ID` (NUMBER).
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_stores')
+                field: store_id
+      - name: manager_id
+        description: Parsed numeric manager identifier from source column `MANAGER_ID` (TEXT), treating literal `NULL` as null.
+
+  - name: stg_stocks
+    description: Staging model for raw inventory stock records from `ADEBNEYDEMODB4.RAW.STOCKS`. Preserves source column names.
+    columns:
+      - name: _file
+        description: Source column `_FILE` (TEXT).
+      - name: _line
+        description: Source column `_LINE` (NUMBER).
+      - name: _modified
+        description: Source column `_MODIFIED` (TIMESTAMP_TZ).
+      - name: _fivetran_synced
+        description: Source column `_FIVETRAN_SYNCED` (TIMESTAMP_TZ).
+      - name: store_id
+        description: Source column `STORE_ID` (NUMBER).
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_stores')
+                field: store_id
+      - name: product_id
+        description: Source column `PRODUCT_ID` (NUMBER).
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_products')
+                field: product_id
+      - name: quantity
+        description: Source column `QUANTITY` (NUMBER).
+        data_tests:
+          - not_null
+
+  - name: stg_stores
+    description: Staging model for raw store records from `ADEBNEYDEMODB4.RAW.STORES`. Preserves source column names.
+    columns:
+      - name: _file
+        description: Source column `_FILE` (TEXT).
+      - name: _line
+        description: Source column `_LINE` (NUMBER).
+      - name: _modified
+        description: Source column `_MODIFIED` (TIMESTAMP_TZ).
+      - name: _fivetran_synced
+        description: Source column `_FIVETRAN_SYNCED` (TIMESTAMP_TZ).
+      - name: store_id
+        description: Source column `STORE_ID` (NUMBER).
+        data_tests:
+          - unique
+          - not_null
+      - name: store_name
+        description: Source column `STORE_NAME` (TEXT).
+      - name: phone
+        description: Source column `PHONE` (TEXT).
+      - name: email
+        description: Source column `EMAIL` (TEXT).
+      - name: street
+        description: Source column `STREET` (TEXT).
+      - name: city
+        description: Source column `CITY` (TEXT).
+      - name: state
+        description: Source column `STATE` (TEXT).
+      - name: zip_code
+        description: Source column `ZIP_CODE` (NUMBER).
+
+
+  - name: stg_customer_support_interactions
+    description: Staging model for raw customer support interaction records from `ADEBNEYDEMODB4.RAW.CUSTOMER_SUPPORT_INTERACTIONS`. Preserves source column names.
+    columns:
+      - name: _file
+        description: Source column `_FILE` (TEXT).
+      - name: _line
+        description: Source column `_LINE` (NUMBER).
+      - name: _modified
+        description: Source column `_MODIFIED` (TIMESTAMP_TZ).
+      - name: _fivetran_synced
+        description: Source column `_FIVETRAN_SYNCED` (TIMESTAMP_TZ).
+      - name: interaction_id
+        description: Source column `INTERACTION_ID` (TEXT).
+      - name: customer_id
+        description: Source column `CUSTOMER_ID` (NUMBER).
+      - name: order_id
+        description: Source column `ORDER_ID` (NUMBER).
+      - name: product_id
+        description: Source column `PRODUCT_ID` (NUMBER).
+      - name: interaction_at
+        description: Source column `INTERACTION_AT` (TIMESTAMP_NTZ).
+      - name: channel
+        description: Source column `CHANNEL` (TEXT).
+      - name: interaction_type
+        description: Source column `INTERACTION_TYPE` (TEXT).
+      - name: issue_category
+        description: Source column `ISSUE_CATEGORY` (TEXT).
+      - name: sentiment_score
+        description: Source column `SENTIMENT_SCORE` (FLOAT).
+      - name: sentiment_label
+        description: Source column `SENTIMENT_LABEL` (TEXT).
+      - name: csat_score
+        description: Source column `CSAT_SCORE` (NUMBER).
+      - name: resolved_flag
+        description: Source column `RESOLVED_FLAG` (BOOLEAN).
+      - name: resolution_minutes
+        description: Source column `RESOLUTION_MINUTES` (NUMBER).
+      - name: follow_up_required
+        description: Source column `FOLLOW_UP_REQUIRED` (BOOLEAN).
+      - name: interaction_cost
+        description: Source column `INTERACTION_COST` (FLOAT).
+      - name: refund_amount
+        description: Source column `REFUND_AMOUNT` (FLOAT).
+      - name: support_agent_id
+        description: Source column `SUPPORT_AGENT_ID` (TEXT).
+      - name: interaction_summary
+        description: Source column `INTERACTION_SUMMARY` (TEXT).
