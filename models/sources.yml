@@ -1,7 +1,37 @@
+version: 2
+
 sources:
   - name: raw
-    description: Raw operational tables from ADEBNEYDEMODB4.RAW.
+    description: Raw operational tables from `ADEBNEYDEMODB4.RAW`.
     database: ADEBNEYDEMODB4
     schema: RAW
     tables:
       - name: brands
+        description: Raw brand records.
+
+      - name: categories
+        description: Raw product category records.
+
+      - name: customers
+        description: Raw customer records.
+
+      - name: customer_support_interactions
+        description: Raw customer support interaction records.
+
+      - name: order_items
+        description: Raw order line item records.
+
+      - name: orders
+        description: Raw order header records.
+
+      - name: products
+        description: Raw product records.
+
+      - name: staffs
+        description: Raw staff records.
+
+      - name: stocks
+        description: Raw inventory stock records.
+
+      - name: stores
+        description: Raw store records.
