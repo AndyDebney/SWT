@@ -1,0 +1,52 @@
+with staging_data as (
+    select
+        _file as source_file,
+        _line as record_line_no,
+        _modified as updated_at,
+        _fivetran_synced as loaded_at,
+        interaction_id,
+        customer_id,
+        order_id,
+        product_id,
+        interaction_at,
+        channel,
+        interaction_type,
+        issue_category,
+        sentiment_score,
+        sentiment_label,
+        csat_score,
+        resolved_flag,
+        resolution_minutes,
+        follow_up_required,
+        interaction_cost,
+        refund_amount,
+        support_agent_id,
+        interaction_summary
+    from {{ ref('stg_customer_support_interactions') }}
+)
+
+select
+    source_file,
+    record_line_no,
+    updated_at,
+    loaded_at,
+    interaction_id,
+    customer_id,
+    order_id,
+    product_id,
+    interaction_at,
+    channel,
+    interaction_type,
+    issue_category,
+    sentiment_score,
+    sentiment_label,
+    csat_score,
+    resolved_flag,
+    resolution_minutes,
+    follow_up_required,
+    interaction_cost,
+    refund_amount,
+    support_agent_id,
+    interaction_summary
+from staging_data
+

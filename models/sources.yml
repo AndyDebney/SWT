@@ -5,3 +5,141 @@ sources:
     schema: RAW
     tables:
       - name: brands
+        columns:
+          - name: _file
+          - name: _line
+          - name: _modified
+          - name: _fivetran_synced
+          - name: brand_id
+          - name: brand_name
+
+      - name: categories
+        columns:
+          - name: _file
+          - name: _line
+          - name: _modified
+          - name: _fivetran_synced
+          - name: category_id
+          - name: category_name
+
+      - name: customers
+        columns:
+          - name: _file
+          - name: _line
+          - name: _modified
+          - name: _fivetran_synced
+          - name: customer_id
+          - name: first_name
+          - name: last_name
+          - name: phone
+          - name: email
+          - name: street
+          - name: city
+          - name: state
+          - name: zip_code
+
+      - name: customer_support_interactions
+        columns:
+          - name: _file
+          - name: _line
+          - name: _modified
+          - name: _fivetran_synced
+          - name: interaction_id
+          - name: customer_id
+          - name: order_id
+          - name: product_id
+          - name: interaction_at
+          - name: channel
+          - name: interaction_type
+          - name: issue_category
+          - name: sentiment_score
+          - name: sentiment_label
+          - name: csat_score
+          - name: resolved_flag
+          - name: resolution_minutes
+          - name: follow_up_required
+          - name: interaction_cost
+          - name: refund_amount
+          - name: support_agent_id
+          - name: interaction_summary
+
+      - name: orders
+        columns:
+          - name: _file
+          - name: _line
+          - name: _modified
+          - name: _fivetran_synced
+          - name: order_id
+          - name: customer_id
+          - name: order_status
+          - name: order_date
+          - name: required_date
+          - name: shipped_date
+          - name: store_id
+          - name: staff_id
+
+      - name: order_items
+        columns:
+          - name: _file
+          - name: _line
+          - name: _modified
+          - name: _fivetran_synced
+          - name: order_id
+          - name: item_id
+          - name: product_id
+          - name: quantity
+          - name: list_price
+          - name: discount
+
+      - name: products
+        columns:
+          - name: _file
+          - name: _line
+          - name: _modified
+          - name: _fivetran_synced
+          - name: product_id
+          - name: product_name
+          - name: brand_id
+          - name: category_id
+          - name: model_year
+          - name: list_price
+
+      - name: staffs
+        columns:
+          - name: _file
+          - name: _line
+          - name: _modified
+          - name: _fivetran_synced
+          - name: staff_id
+          - name: first_name
+          - name: last_name
+          - name: email
+          - name: phone
+          - name: active
+          - name: store_id
+          - name: manager_id
+
+      - name: stocks
+        columns:
+          - name: _file
+          - name: _line
+          - name: _modified
+          - name: _fivetran_synced
+          - name: store_id
+          - name: product_id
+          - name: quantity
+
+      - name: stores
+        columns:
+          - name: _file
+          - name: _line
+          - name: _modified
+          - name: _fivetran_synced
+          - name: store_id
+          - name: store_name
+          - name: phone
+          - name: email
+          - name: street
+          - name: city
+          - name: state
+          - name: zip_code

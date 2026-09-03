@@ -1,0 +1,296 @@
+version: 2
+
+models:
+  - name: stg_brands
+    description: Staging model for the `raw.brands` source table in `ADEBNEYDEMODB4.RAW`.
+    columns:
+      - name: _file
+        description: Raw file metadata column from `raw.brands`.
+      - name: _line
+        description: Raw line metadata column from `raw.brands`.
+      - name: _modified
+        description: Raw file modified timestamp metadata column from `raw.brands`.
+      - name: _fivetran_synced
+        description: Fivetran sync timestamp metadata column from `raw.brands`.
+      - name: brand_id
+        description: Raw `brand_id` value from `raw.brands`.
+        data_tests:
+          - not_null
+          - unique
+      - name: brand_name
+        description: Raw `brand_name` value from `raw.brands`.
+
+  - name: stg_categories
+    description: Staging model for the `raw.categories` source table in `ADEBNEYDEMODB4.RAW`.
+    columns:
+      - name: _file
+        description: Raw file metadata column from `raw.categories`.
+      - name: _line
+        description: Raw line metadata column from `raw.categories`.
+      - name: _modified
+        description: Raw file modified timestamp metadata column from `raw.categories`.
+      - name: _fivetran_synced
+        description: Fivetran sync timestamp metadata column from `raw.categories`.
+      - name: category_id
+        description: Raw `category_id` value from `raw.categories`.
+        data_tests:
+          - not_null
+          - unique
+      - name: category_name
+        description: Raw `category_name` value from `raw.categories`.
+
+  - name: stg_customers
+    description: Staging model for the `raw.customers` source table in `ADEBNEYDEMODB4.RAW`.
+    columns:
+      - name: _file
+        description: Raw file metadata column from `raw.customers`.
+      - name: _line
+        description: Raw line metadata column from `raw.customers`.
+      - name: _modified
+        description: Raw file modified timestamp metadata column from `raw.customers`.
+      - name: _fivetran_synced
+        description: Fivetran sync timestamp metadata column from `raw.customers`.
+      - name: customer_id
+        description: Raw `customer_id` value from `raw.customers`.
+        data_tests:
+          - not_null
+          - unique
+      - name: first_name
+        description: Raw `first_name` value from `raw.customers`.
+      - name: last_name
+        description: Raw `last_name` value from `raw.customers`.
+      - name: phone
+        description: Raw `phone` value from `raw.customers`.
+      - name: email
+        description: Raw `email` value from `raw.customers`.
+      - name: street
+        description: Raw `street` value from `raw.customers`.
+      - name: city
+        description: Raw `city` value from `raw.customers`.
+      - name: state
+        description: Raw `state` value from `raw.customers`.
+      - name: zip_code
+        description: Raw `zip_code` value from `raw.customers`.
+
+  - name: stg_customer_support_interactions
+    description: Staging model for the `raw.customer_support_interactions` source table in `ADEBNEYDEMODB4.RAW`.
+    columns:
+      - name: _file
+        description: Raw file metadata column from `raw.customer_support_interactions`.
+      - name: _line
+        description: Raw line metadata column from `raw.customer_support_interactions`.
+      - name: _modified
+        description: Raw file modified timestamp metadata column from `raw.customer_support_interactions`.
+      - name: _fivetran_synced
+        description: Fivetran sync timestamp metadata column from `raw.customer_support_interactions`.
+      - name: interaction_id
+        description: Raw `interaction_id` value from `raw.customer_support_interactions`.
+        data_tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: Raw `customer_id` value from `raw.customer_support_interactions`.
+      - name: order_id
+        description: Raw `order_id` value from `raw.customer_support_interactions`.
+      - name: product_id
+        description: Raw `product_id` value from `raw.customer_support_interactions`.
+      - name: interaction_at
+        description: Raw `interaction_at` value from `raw.customer_support_interactions`.
+      - name: channel
+        description: Raw `channel` value from `raw.customer_support_interactions`.
+      - name: interaction_type
+        description: Raw `interaction_type` value from `raw.customer_support_interactions`.
+      - name: issue_category
+        description: Raw `issue_category` value from `raw.customer_support_interactions`.
+      - name: sentiment_score
+        description: Raw `sentiment_score` value from `raw.customer_support_interactions`.
+      - name: sentiment_label
+        description: Raw `sentiment_label` value from `raw.customer_support_interactions`.
+      - name: csat_score
+        description: Raw `csat_score` value from `raw.customer_support_interactions`.
+      - name: resolved_flag
+        description: Raw `resolved_flag` value from `raw.customer_support_interactions`.
+      - name: resolution_minutes
+        description: Raw `resolution_minutes` value from `raw.customer_support_interactions`.
+      - name: follow_up_required
+        description: Raw `follow_up_required` value from `raw.customer_support_interactions`.
+      - name: interaction_cost
+        description: Raw `interaction_cost` value from `raw.customer_support_interactions`.
+      - name: refund_amount
+        description: Raw `refund_amount` value from `raw.customer_support_interactions`.
+      - name: support_agent_id
+        description: Raw `support_agent_id` value from `raw.customer_support_interactions`.
+      - name: interaction_summary
+        description: Raw `interaction_summary` value from `raw.customer_support_interactions`.
+
+  - name: stg_orders
+    description: Staging model for the `raw.orders` source table in `ADEBNEYDEMODB4.RAW`.
+    columns:
+      - name: _file
+        description: Raw file metadata column from `raw.orders`.
+      - name: _line
+        description: Raw line metadata column from `raw.orders`.
+      - name: _modified
+        description: Raw file modified timestamp metadata column from `raw.orders`.
+      - name: _fivetran_synced
+        description: Fivetran sync timestamp metadata column from `raw.orders`.
+      - name: order_id
+        description: Raw `order_id` value from `raw.orders`.
+        data_tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: Raw `customer_id` value from `raw.orders`.
+      - name: order_status
+        description: Raw `order_status` value from `raw.orders`.
+      - name: order_date
+        description: Raw `order_date` value from `raw.orders`.
+      - name: required_date
+        description: Raw `required_date` value from `raw.orders`.
+      - name: shipped_date
+        description: Raw `shipped_date` value from `raw.orders`.
+      - name: store_id
+        description: Raw `store_id` value from `raw.orders`.
+      - name: staff_id
+        description: Raw `staff_id` value from `raw.orders`.
+
+  - name: stg_order_items
+    description: Staging model for the `raw.order_items` source table in `ADEBNEYDEMODB4.RAW`.
+    columns:
+      - name: _file
+        description: Raw file metadata column from `raw.order_items`.
+      - name: _line
+        description: Raw line metadata column from `raw.order_items`.
+      - name: _modified
+        description: Raw file modified timestamp metadata column from `raw.order_items`.
+      - name: _fivetran_synced
+        description: Fivetran sync timestamp metadata column from `raw.order_items`.
+      - name: order_id
+        description: Raw `order_id` value from `raw.order_items`.
+        data_tests:
+          - not_null
+      - name: item_id
+        description: Raw `item_id` value from `raw.order_items`.
+        data_tests:
+          - not_null
+      - name: product_id
+        description: Raw `product_id` value from `raw.order_items`.
+        data_tests:
+          - not_null
+      - name: quantity
+        description: Raw `quantity` value from `raw.order_items`.
+      - name: list_price
+        description: Raw `list_price` value from `raw.order_items`.
+      - name: discount
+        description: Raw `discount` value from `raw.order_items`.
+
+  - name: stg_products
+    description: Staging model for the `raw.products` source table in `ADEBNEYDEMODB4.RAW`.
+    columns:
+      - name: _file
+        description: Raw file metadata column from `raw.products`.
+      - name: _line
+        description: Raw line metadata column from `raw.products`.
+      - name: _modified
+        description: Raw file modified timestamp metadata column from `raw.products`.
+      - name: _fivetran_synced
+        description: Fivetran sync timestamp metadata column from `raw.products`.
+      - name: product_id
+        description: Raw `product_id` value from `raw.products`.
+        data_tests:
+          - not_null
+          - unique
+      - name: product_name
+        description: Raw `product_name` value from `raw.products`.
+      - name: brand_id
+        description: Raw `brand_id` value from `raw.products`.
+      - name: category_id
+        description: Raw `category_id` value from `raw.products`.
+      - name: model_year
+        description: Raw `model_year` value from `raw.products`.
+      - name: list_price
+        description: Raw `list_price` value from `raw.products`.
+
+  - name: stg_staffs
+    description: Staging model for the `raw.staffs` source table in `ADEBNEYDEMODB4.RAW`.
+    columns:
+      - name: _file
+        description: Raw file metadata column from `raw.staffs`.
+      - name: _line
+        description: Raw line metadata column from `raw.staffs`.
+      - name: _modified
+        description: Raw file modified timestamp metadata column from `raw.staffs`.
+      - name: _fivetran_synced
+        description: Fivetran sync timestamp metadata column from `raw.staffs`.
+      - name: staff_id
+        description: Raw `staff_id` value from `raw.staffs`.
+        data_tests:
+          - not_null
+          - unique
+      - name: first_name
+        description: Raw `first_name` value from `raw.staffs`.
+      - name: last_name
+        description: Raw `last_name` value from `raw.staffs`.
+      - name: email
+        description: Raw `email` value from `raw.staffs`.
+      - name: phone
+        description: Raw `phone` value from `raw.staffs`.
+      - name: active
+        description: Raw `active` value from `raw.staffs`.
+      - name: store_id
+        description: Raw `store_id` value from `raw.staffs`.
+      - name: manager_id
+        description: Raw `manager_id` value from `raw.staffs`.
+
+  - name: stg_stocks
+    description: Staging model for the `raw.stocks` source table in `ADEBNEYDEMODB4.RAW`.
+    columns:
+      - name: _file
+        description: Raw file metadata column from `raw.stocks`.
+      - name: _line
+        description: Raw line metadata column from `raw.stocks`.
+      - name: _modified
+        description: Raw file modified timestamp metadata column from `raw.stocks`.
+      - name: _fivetran_synced
+        description: Fivetran sync timestamp metadata column from `raw.stocks`.
+      - name: store_id
+        description: Raw `store_id` value from `raw.stocks`.
+        data_tests:
+          - not_null
+      - name: product_id
+        description: Raw `product_id` value from `raw.stocks`.
+        data_tests:
+          - not_null
+      - name: quantity
+        description: Raw `quantity` value from `raw.stocks`.
+
+  - name: stg_stores
+    description: Staging model for the `raw.stores` source table in `ADEBNEYDEMODB4.RAW`.
+    columns:
+      - name: _file
+        description: Raw file metadata column from `raw.stores`.
+      - name: _line
+        description: Raw line metadata column from `raw.stores`.
+      - name: _modified
+        description: Raw file modified timestamp metadata column from `raw.stores`.
+      - name: _fivetran_synced
+        description: Fivetran sync timestamp metadata column from `raw.stores`.
+      - name: store_id
+        description: Raw `store_id` value from `raw.stores`.
+        data_tests:
+          - not_null
+          - unique
+      - name: store_name
+        description: Raw `store_name` value from `raw.stores`.
+      - name: phone
+        description: Raw `phone` value from `raw.stores`.
+      - name: email
+        description: Raw `email` value from `raw.stores`.
+      - name: street
+        description: Raw `street` value from `raw.stores`.
+      - name: city
+        description: Raw `city` value from `raw.stores`.
+      - name: state
+        description: Raw `state` value from `raw.stores`.
+      - name: zip_code
+        description: Raw `zip_code` value from `raw.stores`.
