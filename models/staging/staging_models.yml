@@ -1,0 +1,262 @@
+version: 2
+
+models:
+  - name: stg_brands
+    description: Staging model for raw brand records from `source('raw', 'brands')`.
+    columns:
+      - name: _file
+        description: Source file path recorded on the raw `brands` row.
+      - name: _line
+        description: Source file line number recorded on the raw `brands` row.
+      - name: _modified
+        description: Source file modification timestamp recorded on the raw `brands` row.
+      - name: _fivetran_synced
+        description: Timestamp when Fivetran last synced the raw `brands` row.
+      - name: brand_id
+        description: Brand identifier from the raw `brands` table.
+      - name: brand_name
+        description: Brand name from the raw `brands` table.
+
+  - name: stg_categories
+    description: Staging model for raw product category records from `source('raw', 'categories')`.
+    columns:
+      - name: _file
+        description: Source file path recorded on the raw `categories` row.
+      - name: _line
+        description: Source file line number recorded on the raw `categories` row.
+      - name: _modified
+        description: Source file modification timestamp recorded on the raw `categories` row.
+      - name: _fivetran_synced
+        description: Timestamp when Fivetran last synced the raw `categories` row.
+      - name: category_id
+        description: Category identifier from the raw `categories` table.
+      - name: category_name
+        description: Category name from the raw `categories` table.
+
+  - name: stg_customers
+    description: Staging model for raw customer records from `source('raw', 'customers')`.
+    columns:
+      - name: _file
+        description: Source file path recorded on the raw `customers` row.
+      - name: _line
+        description: Source file line number recorded on the raw `customers` row.
+      - name: _modified
+        description: Source file modification timestamp recorded on the raw `customers` row.
+      - name: _fivetran_synced
+        description: Timestamp when Fivetran last synced the raw `customers` row.
+      - name: customer_id
+        description: Customer identifier from the raw `customers` table.
+      - name: first_name
+        description: Customer first name from the raw `customers` table.
+      - name: last_name
+        description: Customer last name from the raw `customers` table.
+      - name: phone
+        description: Customer phone number from the raw `customers` table.
+      - name: email
+        description: Customer email address from the raw `customers` table.
+      - name: street
+        description: Customer street address from the raw `customers` table.
+      - name: city
+        description: Customer city from the raw `customers` table.
+      - name: state
+        description: Customer state from the raw `customers` table.
+      - name: zip_code
+        description: Customer ZIP code from the raw `customers` table.
+
+  - name: stg_customer_support_interactions
+    description: Staging model for raw customer support interaction records from `source('raw', 'customer_support_interactions')`.
+    columns:
+      - name: _file
+        description: Source file path recorded on the raw `customer_support_interactions` row.
+      - name: _line
+        description: Source file line number recorded on the raw `customer_support_interactions` row.
+      - name: _modified
+        description: Source file modification timestamp recorded on the raw `customer_support_interactions` row.
+      - name: _fivetran_synced
+        description: Timestamp when Fivetran last synced the raw `customer_support_interactions` row.
+      - name: interaction_id
+        description: Interaction identifier from the raw `customer_support_interactions` table.
+      - name: customer_id
+        description: Customer identifier from the raw `customer_support_interactions` table.
+      - name: order_id
+        description: Order identifier from the raw `customer_support_interactions` table.
+      - name: product_id
+        description: Product identifier from the raw `customer_support_interactions` table.
+      - name: interaction_at
+        description: Interaction timestamp from the raw `customer_support_interactions` table.
+      - name: channel
+        description: Support channel from the raw `customer_support_interactions` table.
+      - name: interaction_type
+        description: Support interaction type from the raw `customer_support_interactions` table.
+      - name: issue_category
+        description: Issue category from the raw `customer_support_interactions` table.
+      - name: sentiment_score
+        description: Sentiment score from the raw `customer_support_interactions` table.
+      - name: sentiment_label
+        description: Sentiment label from the raw `customer_support_interactions` table.
+      - name: csat_score
+        description: CSAT score from the raw `customer_support_interactions` table.
+      - name: resolved_flag
+        description: Resolution flag from the raw `customer_support_interactions` table.
+      - name: resolution_minutes
+        description: Resolution minutes from the raw `customer_support_interactions` table.
+      - name: follow_up_required
+        description: Follow-up-required flag from the raw `customer_support_interactions` table.
+      - name: interaction_cost
+        description: Interaction cost from the raw `customer_support_interactions` table.
+      - name: refund_amount
+        description: Refund amount from the raw `customer_support_interactions` table.
+      - name: support_agent_id
+        description: Support agent identifier from the raw `customer_support_interactions` table.
+      - name: interaction_summary
+        description: Interaction summary from the raw `customer_support_interactions` table.
+
+  - name: stg_order_items
+    description: Staging model for raw order line item records from `source('raw', 'order_items')`.
+    columns:
+      - name: _file
+        description: Source file path recorded on the raw `order_items` row.
+      - name: _line
+        description: Source file line number recorded on the raw `order_items` row.
+      - name: _modified
+        description: Source file modification timestamp recorded on the raw `order_items` row.
+      - name: _fivetran_synced
+        description: Timestamp when Fivetran last synced the raw `order_items` row.
+      - name: order_id
+        description: Order identifier from the raw `order_items` table.
+      - name: item_id
+        description: Item identifier from the raw `order_items` table.
+      - name: product_id
+        description: Product identifier from the raw `order_items` table.
+      - name: quantity
+        description: Ordered quantity from the raw `order_items` table.
+      - name: list_price
+        description: List price from the raw `order_items` table.
+      - name: discount
+        description: Discount from the raw `order_items` table.
+
+  - name: stg_orders
+    description: Staging model for raw order header records from `source('raw', 'orders')`.
+    columns:
+      - name: _file
+        description: Source file path recorded on the raw `orders` row.
+      - name: _line
+        description: Source file line number recorded on the raw `orders` row.
+      - name: _modified
+        description: Source file modification timestamp recorded on the raw `orders` row.
+      - name: _fivetran_synced
+        description: Timestamp when Fivetran last synced the raw `orders` row.
+      - name: order_id
+        description: Order identifier from the raw `orders` table.
+      - name: customer_id
+        description: Customer identifier from the raw `orders` table.
+      - name: order_status
+        description: Order status code from the raw `orders` table.
+      - name: order_date
+        description: Order date from the raw `orders` table.
+      - name: required_date
+        description: Required fulfillment date from the raw `orders` table.
+      - name: shipped_date
+        description: Shipped date from the raw `orders` table.
+      - name: store_id
+        description: Store identifier from the raw `orders` table.
+      - name: staff_id
+        description: Staff identifier from the raw `orders` table.
+
+  - name: stg_products
+    description: Staging model for raw product records from `source('raw', 'products')`.
+    columns:
+      - name: _file
+        description: Source file path recorded on the raw `products` row.
+      - name: _line
+        description: Source file line number recorded on the raw `products` row.
+      - name: _modified
+        description: Source file modification timestamp recorded on the raw `products` row.
+      - name: _fivetran_synced
+        description: Timestamp when Fivetran last synced the raw `products` row.
+      - name: product_id
+        description: Product identifier from the raw `products` table.
+      - name: product_name
+        description: Product name from the raw `products` table.
+      - name: brand_id
+        description: Brand identifier from the raw `products` table.
+      - name: category_id
+        description: Category identifier from the raw `products` table.
+      - name: model_year
+        description: Model year from the raw `products` table.
+      - name: list_price
+        description: List price from the raw `products` table.
+
+  - name: stg_staffs
+    description: Staging model for raw staff records from `source('raw', 'staffs')`.
+    columns:
+      - name: _file
+        description: Source file path recorded on the raw `staffs` row.
+      - name: _line
+        description: Source file line number recorded on the raw `staffs` row.
+      - name: _modified
+        description: Source file modification timestamp recorded on the raw `staffs` row.
+      - name: _fivetran_synced
+        description: Timestamp when Fivetran last synced the raw `staffs` row.
+      - name: staff_id
+        description: Staff identifier from the raw `staffs` table.
+      - name: first_name
+        description: Staff first name from the raw `staffs` table.
+      - name: last_name
+        description: Staff last name from the raw `staffs` table.
+      - name: email
+        description: Staff email address from the raw `staffs` table.
+      - name: phone
+        description: Staff phone number from the raw `staffs` table.
+      - name: active
+        description: Active flag from the raw `staffs` table.
+      - name: store_id
+        description: Store identifier from the raw `staffs` table.
+      - name: manager_id
+        description: Manager identifier from the raw `staffs` table.
+
+  - name: stg_stocks
+    description: Staging model for raw inventory stock records from `source('raw', 'stocks')`.
+    columns:
+      - name: _file
+        description: Source file path recorded on the raw `stocks` row.
+      - name: _line
+        description: Source file line number recorded on the raw `stocks` row.
+      - name: _modified
+        description: Source file modification timestamp recorded on the raw `stocks` row.
+      - name: _fivetran_synced
+        description: Timestamp when Fivetran last synced the raw `stocks` row.
+      - name: store_id
+        description: Store identifier from the raw `stocks` table.
+      - name: product_id
+        description: Product identifier from the raw `stocks` table.
+      - name: quantity
+        description: Inventory quantity from the raw `stocks` table.
+
+  - name: stg_stores
+    description: Staging model for raw store records from `source('raw', 'stores')`.
+    columns:
+      - name: _file
+        description: Source file path recorded on the raw `stores` row.
+      - name: _line
+        description: Source file line number recorded on the raw `stores` row.
+      - name: _modified
+        description: Source file modification timestamp recorded on the raw `stores` row.
+      - name: _fivetran_synced
+        description: Timestamp when Fivetran last synced the raw `stores` row.
+      - name: store_id
+        description: Store identifier from the raw `stores` table.
+      - name: store_name
+        description: Store name from the raw `stores` table.
+      - name: phone
+        description: Store phone number from the raw `stores` table.
+      - name: email
+        description: Store email address from the raw `stores` table.
+      - name: street
+        description: Store street address from the raw `stores` table.
+      - name: city
+        description: Store city from the raw `stores` table.
+      - name: state
+        description: Store state from the raw `stores` table.
+      - name: zip_code
+        description: Store ZIP code from the raw `stores` table.
